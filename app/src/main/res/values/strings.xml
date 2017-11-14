@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Dienstplan</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_soldier">Soldaten</string>
+    <string name="title_workplan">Dienstplan</string>
+    <string name="title_posts">Posten</string>
+</resources>
