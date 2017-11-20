@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.rynkbit.dienstplan.db.DBHelper;
+
 public class Workplan extends AppCompatActivity {
 
     private FrameLayout mContent;
@@ -55,6 +57,8 @@ public class Workplan extends AppCompatActivity {
 
         navigation.setSelectedItemId(R.id.navigation_workplan);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+//        DBHelper dbHelper = new DBHelper(this);
     }
 
     @Override

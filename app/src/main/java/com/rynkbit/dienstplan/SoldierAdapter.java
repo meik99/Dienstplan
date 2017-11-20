@@ -26,7 +26,7 @@ public class SoldierAdapter extends RecyclerView.Adapter<SoldierAdapter.SoldierV
     public SoldierAdapter(Workplan workplan) {
         this.workplan = workplan;
         soldiers = new LinkedList<>();
-        soldierFacade = new SoldierFacade();
+        soldierFacade = new SoldierFacade(workplan);
         soldiers.addAll(soldierFacade.getAll());
     }
 

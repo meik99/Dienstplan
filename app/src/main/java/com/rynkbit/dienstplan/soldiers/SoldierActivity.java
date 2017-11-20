@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.rynkbit.dienstplan.R;
 import com.rynkbit.dienstplan.db.facade.SoldierFacade;
 import com.rynkbit.dienstplan.entities.Soldier;
-import com.rynkbit.dienstplan.entities.SoldierConnection;
 
 public class SoldierActivity extends AppCompatActivity {
     private Soldier soldier;
@@ -32,7 +31,7 @@ public class SoldierActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soldier);
 
-        soldierFacade = new SoldierFacade();
+        soldierFacade = new SoldierFacade(this);
 
         if(this.getIntent().hasExtra("soldier")){
             soldier = soldierFacade.getById(this.getIntent().getLongExtra("soldier", -1l));
@@ -40,7 +39,7 @@ public class SoldierActivity extends AppCompatActivity {
             soldier = new Soldier();
         }
 
-        txtName = (EditText) findViewById(R.id.txtName);
+        txtName = (EditText) findViewById(R.id.txtPostName);
         switchWeak = (Switch) findViewById(R.id.switchWeak);
         switchIll = (Switch) findViewById(R.id.switchIll);
         txtHours = (TextView) findViewById(R.id.txtHourValue);

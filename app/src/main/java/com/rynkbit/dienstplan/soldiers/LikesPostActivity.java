@@ -38,8 +38,8 @@ public class LikesPostActivity extends AppCompatActivity {
             throw new IllegalArgumentException("Intent must have soldier id");
         }
 
-        soldierFacade = new SoldierFacade();
-        postFacade = new PostFacade();
+        soldierFacade = new SoldierFacade(this);
+        postFacade = new PostFacade(this);
         soldier = soldierFacade.getById(this.getIntent().getLongExtra("soldier", -1));
 
         listLikesPost = (ListView) findViewById(R.id.listLikesPost);

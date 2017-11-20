@@ -1,5 +1,10 @@
 package com.rynkbit.dienstplan.db.repository;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.rynkbit.dienstplan.db.DBHelper;
 import com.rynkbit.dienstplan.entities.Soldier;
 
 import java.util.LinkedList;
@@ -12,40 +17,42 @@ import java.util.List;
 public class SoldierRepository {
     private static SoldierRepository instance;
 
-    public static SoldierRepository getInstance() {
+    public static SoldierRepository getInstance(Context context) {
         if(instance == null){
-            instance = new SoldierRepository();
+            instance = new SoldierRepository(context);
         }
 
         return instance;
     }
 
     private List<Soldier> soldiers;
+    private DBHelper dbHelper;
 
-    private SoldierRepository() {
-        soldiers = new LinkedList<>();
-
-        this.add(new Soldier(
-                0,
-                "Soldier 1",
-                Soldier.SoldierType.Normal,
-                true,
-                false,
-                20
-        ));
-        this.add(new Soldier(
-                1,
-                "Soldier 2",
-                Soldier.SoldierType.Normal,
-                false,
-                false,
-                40
-        ));
+    private SoldierRepository(Context context) {
+        dbHelper = new DBHelper(context);
+//
+//        soldiers = new LinkedList<>();
+//
+//        this.add(new Soldier(
+//                0,
+//                "Soldier 1",
+//                Soldier.Positon.Normal,
+//                true,
+//                false,
+//                20
+//        ));
+//        this.add(new Soldier(
+//                1,
+//                "Soldier 2",
+//                Soldier.Positon.Normal,
+//                false,
+//                false,
+//                40
+//        ));
     }
 
     public void add(Soldier soldier){
-        soldier.setId(soldiers.size());
-        soldiers.add(soldier);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
     }
 
     public void remove(long id){
@@ -65,7 +72,7 @@ public class SoldierRepository {
                     s.setName(soldier.getName());
                     s.setIll(soldier.isIll());
                     s.setWeak(soldier.isWeak());
-                    s.setSoldierType(soldier.getSoldierType());
+                    s.setPositon(soldier.getPositon());
                     s.setWorkingHours(soldier.getWorkingHours());
                     s.setLikesPostList(soldier.getLikesPostList());
                     s.setSoldierConnectionList(soldier.getSoldierConnectionList());
@@ -79,16 +86,60 @@ public class SoldierRepository {
     }
 
     public List<Soldier> getAll() {
-        return soldiers;
+        List<Soldier> result = new LinkedList<>();
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query(
+                com.rynkbit.dienstplan.db.contract.Soldier.TABLE,
+                new String[]{
+                        com.rynkbit.dienstplan.db.contract.Soldier.Columns.ID,
+                        com.rynkbit.dienstplan.db.contract.Soldier.Columns.NAME,
+                        com.rynkbit.dienstplan.db.contract.Soldier.Columns.EXERTION,
+                        com.rynkbit.dienstplan.db.contract.Soldier.Columns.POSITION,
+                        com.rynkbit.dienstplan.db.contract.Soldier.Columns.STATUS
+                },
+                null,null,null,null,null
+        );
+
+        if(cursor.moveToFirst()){
+            do{
+                long id = cursor.getLong(
+                        cursor.getColumnIndex(
+                                com.rynkbit.dienstplan.db.contract.Soldier.Columns.ID
+                        ));
+                String name = cursor.getString(
+                        cursor.getColumnIndex(
+                                com.rynkbit.dienstplan.db.contract.Soldier.Columns.NAME
+                        ));
+                int exertion = cursor.getInt(
+                        cursor.getColumnIndex(
+                                com.rynkbit.dienstplan.db.contract.Soldier.Columns.EXERTION
+                        ));
+                int position = cursor.getInt(
+                        cursor.getColumnIndex(
+                                com.rynkbit.dienstplan.db.contract.Soldier.Columns.POSITION
+                        ));
+                int status = cursor.getInt(
+                        cursor.getColumnIndex(
+                                com.rynkbit.dienstplan.db.contract.Soldier.Columns.STATUS
+                        ));
+
+                Soldier soldier = new Soldier(
+                        id, name, position, status, exertion
+                );
+                result.add(soldier);
+            }while(cursor.moveToNext());
+        }
+
+        return result;
     }
 
-    public Soldier get(long soldier) {
+    public Soldier get(long soldierId) {
         for(int i = 0; i < soldiers.size(); i++){
-            if(soldiers.get(i).getId() == soldier){
+            if(soldiers.get(i).getId() == soldierId){
                 return soldiers.get(i);
             }
         }
 
-        return null;
+        return new Soldier();
     }
 }

@@ -6,4 +6,7 @@
     <string name="title_soldier">Soldaten</string>
     <string name="title_workplan">Dienstplan</string>
     <string name="title_posts">Posten</string>
+    <string name="name">Name</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">Abbrechen</string>
 </resources>

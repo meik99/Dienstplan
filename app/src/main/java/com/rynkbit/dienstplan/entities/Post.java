@@ -10,15 +10,18 @@ public class Post {
     private PostType postType;
     private PostBurden postBurden;
 
+    @Deprecated
     public Post(long id, String name, PostType postType, PostBurden postBurden) {
+        this(id, name, postBurden);
+    }
+
+    public Post(long id, String name, PostBurden postBurden){
         this.id = id;
         this.name = name;
-        this.postType = postType;
         this.postBurden = postBurden;
     }
 
     public Post() {
-
     }
 
     public long getId() {
@@ -58,6 +61,6 @@ public class Post {
     }
 
     public enum PostBurden {
-        Hard, Medium, Light
+        Hard, Medium, Light, None
     }
 }

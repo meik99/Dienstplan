@@ -8,9 +8,11 @@ import java.util.List;
  */
 
 public class Soldier{
+    private int exertion;
+    private Status status;
     private long id;
     private String name;
-    private SoldierType soldierType;
+    private Positon positon;
     private boolean ill;
     private boolean weak;
     private int workingHours;
@@ -18,21 +20,37 @@ public class Soldier{
     private List<LikesPost> likesPostList;
     private List<SoldierConnection> soldierConnectionList;
 
-    public Soldier(long id, String name, SoldierType soldierType, boolean ill, boolean weak, int workingHours) {
+    public Soldier(long id, String name, Positon positon, Status status, int exertion) {
         this();
 
         this.id = id;
         this.name = name;
-        this.soldierType = soldierType;
-        this.ill = ill;
-        this.weak = weak;
-        this.workingHours = workingHours;
+        this.positon = positon;
+        this.status = status;
+        this.exertion = exertion;
     }
 
-    public Soldier() {
+    public Soldier(long id, String name, int position, int status, int exertion) {
+        this(
+                id, name,
+                Positon.values()[position],
+                Status.values()[status],
+                exertion
+        );
+    }
+
+    public Soldier(){
         likesPostList = new LinkedList<>();
         soldierConnectionList = new LinkedList<>();
-        id = -1;
+        this.id = -1;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public long getId() {
@@ -51,12 +69,12 @@ public class Soldier{
         this.name = name;
     }
 
-    public SoldierType getSoldierType() {
-        return soldierType;
+    public Positon getPositon() {
+        return positon;
     }
 
-    public void setSoldierType(SoldierType soldierType) {
-        this.soldierType = soldierType;
+    public void setPositon(Positon positon) {
+        this.positon = positon;
     }
 
     public boolean isIll() {
@@ -99,7 +117,11 @@ public class Soldier{
         this.soldierConnectionList = soldierConnectionList;
     }
 
-    public enum SoldierType{
-        Driver, Commander, ViceCommander, Normal
+    public enum Positon {
+        Driver, Commander, ViceCommander, Gunner
+    }
+
+    public enum Status {
+        Ailling, Ill, Unavailable, Healthy
     }
 }
