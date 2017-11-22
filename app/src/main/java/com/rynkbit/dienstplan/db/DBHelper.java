@@ -8,8 +8,8 @@ import com.rynkbit.dienstplan.db.contract.Connection;
 import com.rynkbit.dienstplan.db.contract.Post;
 import com.rynkbit.dienstplan.db.contract.Preferences;
 import com.rynkbit.dienstplan.db.contract.Shift;
-import com.rynkbit.dienstplan.db.contract.ShiftTask;
 import com.rynkbit.dienstplan.db.contract.Soldier;
+import com.rynkbit.dienstplan.db.contract.SoldierGroup;
 import com.rynkbit.dienstplan.db.contract.Task;
 
 
@@ -19,7 +19,7 @@ import com.rynkbit.dienstplan.db.contract.Task;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Workplan.sqlite";
-    public static final int DB_VERSION = 4;
+    public static final int DB_VERSION = 5;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -33,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(Connection.CREATE_TABLE);
         sqLiteDatabase.execSQL(Task.CREATE_TABLE);
         sqLiteDatabase.execSQL(Shift.CREATE_TABLE);
-        sqLiteDatabase.execSQL(ShiftTask.CREATE_TABLE);
+        sqLiteDatabase.execSQL(SoldierGroup.CREATE_TABLE);
 
         sqLiteDatabase.execSQL(
                 "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'SOLDIER 1', 0, 0, 0);"
@@ -41,11 +41,24 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(
                 "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'SOLDIER 2', 0, 0, 0);"
         );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 2', 10);"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'SPIELFELD', 5);"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, DATE(NOW()), DATE(NOW()));"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, DATE(NOW()), DATE(NOW()));"
+        );
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL(ShiftTask.DROP_TABLE);
+        sqLiteDatabase.execSQL(SoldierGroup.DROP_TABLE);
         sqLiteDatabase.execSQL(Shift.DROP_TABLE);
         sqLiteDatabase.execSQL(Task.DROP_TABLE);
         sqLiteDatabase.execSQL(Connection.DROP_TABLE);

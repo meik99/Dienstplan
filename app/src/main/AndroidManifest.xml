@@ -21,7 +21,8 @@
         <activity android:name=".soldiers.SoldierActivity" />
         <activity android:name=".soldiers.LikesPostActivity" />
         <activity android:name=".soldiers.SoldierConnectionActivity" />
-        <activity android:name=".post.PostActivity"></activity>
+        <activity android:name=".post.PostActivity" />
+        <activity android:name=".workplan.CreateWorkplanActivity"></activity>
     </application>
 
 </manifest>

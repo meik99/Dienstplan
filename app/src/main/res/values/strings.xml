@@ -9,4 +9,6 @@
     <string name="name">Name</string>
     <string name="save">Speichern</string>
     <string name="cancel">Abbrechen</string>
+    <string name="von">Von</string>
+    <string name="bis">Bis</string>
 </resources>
