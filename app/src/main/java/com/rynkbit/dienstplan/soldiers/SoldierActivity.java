@@ -49,14 +49,14 @@ public class SoldierActivity extends AppCompatActivity {
         btnSoldierSave = (Button) findViewById(R.id.btnSaveSoldier);
 
         txtName.setText(soldier.getName());
-        switchWeak.setChecked(soldier.isWeak());
-        switchIll.setChecked(soldier.isIll());
+        switchWeak.setChecked(soldier.getStatus() == Soldier.Status.Ailling);
+        switchIll.setChecked(soldier.getStatus() == Soldier.Status.Ill);
         txtHours.setText(String.valueOf(soldier.getWorkingHours()));
 
         btnSoldierLikesPost.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    soldierFacade.update(soldier);
+                    soldierFacade.merge(soldier);
                     Intent intent = new Intent(SoldierActivity.this, LikesPostActivity.class);
                     intent.putExtra("soldier", soldier.getId());
                     view.getContext().startActivity(intent);
@@ -73,19 +73,23 @@ public class SoldierActivity extends AppCompatActivity {
         switchIll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                switchWeak.setChecked(!b);
+                if(b == true){
+                    switchWeak.setChecked(false);
+                }
             }
         });
         switchWeak.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                switchIll.setChecked(!b);
+                if(b == true){
+                    switchIll.setChecked(false);
+                }
             }
         });
         btnSoldierConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soldierFacade.update(soldier);
+                soldierFacade.merge(soldier);
                 Intent intent = new Intent(SoldierActivity.this, SoldierConnectionActivity.class);
                 intent.putExtra("soldier", soldier.getId());
                 view.getContext().startActivity(intent);
@@ -103,10 +107,16 @@ public class SoldierActivity extends AppCompatActivity {
                     boolean isIll = switchIll.isChecked();
 
                     soldier.setName(name);
-                    soldier.setWeak(isWeak);
-                    soldier.setIll(isIll);
 
-                    soldierFacade.update(soldier);
+                    if(isWeak == true){
+                        soldier.setStatus(Soldier.Status.Ailling);
+                    }else if(isIll){
+                        soldier.setStatus(Soldier.Status.Ill);
+                    }else{
+                        soldier.setStatus(Soldier.Status.Healthy);
+                    }
+
+                    soldierFacade.merge(soldier);
                     SoldierActivity.this.finish();
                 }else{
                     txtName.setError("Name eingeben");

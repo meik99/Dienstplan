@@ -18,7 +18,7 @@ public class Task {
                     "FOREIGN KEY (" + Columns.SHIFT_ID + ") REFERENCES " + Shift.TABLE + "(" + Shift.Columns.ID + ")" +
                     ");";
     public static final String DROP_TABLE =
-            "DROP TABLE " + TABLE + ";";
+            "DROP TABLE IF EXISTS " + TABLE + ";";
 
     public class Columns {
         public static final String ID = "ID";
@@ -26,6 +26,6 @@ public class Task {
         public static final String POST_ID = "POST_ID";
         public static final String TIME_FROM = "TIME_FROM";
         public static final String TIME_TO = "TIME_TO";
-        public static final String GROUP = "GROUP";
+        public static final String GROUP = "GROUP_NUMBER";
     }
 }

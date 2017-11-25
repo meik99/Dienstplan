@@ -22,7 +22,14 @@
         <activity android:name=".soldiers.LikesPostActivity" />
         <activity android:name=".soldiers.SoldierConnectionActivity" />
         <activity android:name=".post.PostActivity" />
-        <activity android:name=".workplan.CreateWorkplanActivity"></activity>
+        <activity
+            android:name=".workplan.group.CreateGroupsActivity"
+            android:label="@string/title_activity_create_groups"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".workplan.task.CreateTaskActivity"
+            android:label="@string/title_activity_create_task"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

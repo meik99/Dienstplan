@@ -19,7 +19,7 @@ import com.rynkbit.dienstplan.db.contract.Task;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Workplan.sqlite";
-    public static final int DB_VERSION = 5;
+    public static final int DB_VERSION = 11;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -42,22 +42,22 @@ public class DBHelper extends SQLiteOpenHelper {
                 "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'SOLDIER 2', 0, 0, 0);"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 2', 10);"
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 2', " + com.rynkbit.dienstplan.entities.Post.PostBurden.Medium.ordinal() + ");"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'SPIELFELD', 5);"
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'SPIELFELD', " + com.rynkbit.dienstplan.entities.Post.PostBurden.None.ordinal() + ");"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, DATE(NOW()), DATE(NOW()));"
+                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '10.11.2017');"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, DATE(NOW()), DATE(NOW()));"
+                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '11.11.2017');"
         );
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL(SoldierGroup.DROP_TABLE);
         sqLiteDatabase.execSQL(Shift.DROP_TABLE);
         sqLiteDatabase.execSQL(Task.DROP_TABLE);
@@ -65,5 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(Preferences.DROP_TABLE);
         sqLiteDatabase.execSQL(Soldier.DROP_TABLE);
         sqLiteDatabase.execSQL(Post.DROP_TABLE);
+
+        onCreate(sqLiteDatabase);
     }
 }

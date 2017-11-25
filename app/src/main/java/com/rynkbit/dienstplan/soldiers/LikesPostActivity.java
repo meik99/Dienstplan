@@ -1,6 +1,5 @@
 package com.rynkbit.dienstplan.soldiers;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -113,7 +112,7 @@ public class LikesPostActivity extends AppCompatActivity {
                     soldier.getLikesPostList().add(likesPost);
                 }
 
-                soldierFacade.update(soldier);
+                soldierFacade.merge(soldier);
                 LikesPostActivity.this.finish();
             }
         };

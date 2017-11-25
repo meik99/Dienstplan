@@ -17,7 +17,7 @@ public class Soldier {
                     ");";
 
     public static final String DROP_TABLE =
-            "DROP TABLE " + TABLE + ";";
+            "DROP TABLE IF EXISTS " + TABLE + ";";
 
     public class Columns{
         public static final String ID = "ID";

@@ -16,7 +16,7 @@ public class Preferences {
                     "FOREIGN KEY (" + Columns.SOLDIER_ID + ") REFERENCES " + Soldier.TABLE + "(" + Soldier.Columns.ID + ")" +
                     ");";
     public static final String DROP_TABLE =
-            "DROP TABLE " + TABLE + ";";
+            "DROP TABLE IF EXISTS " + TABLE + ";";
 
     public class Columns{
         public static final String SOLDIER_ID = "SOLDIER_ID";

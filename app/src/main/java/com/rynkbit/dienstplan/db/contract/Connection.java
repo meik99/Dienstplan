@@ -15,7 +15,7 @@ public class Connection {
                     "FOREIGN KEY (" + Columns.SOLDIER_TO_ID + ") REFERENCES " + Soldier.TABLE + "(" + Soldier.Columns.ID + ")" +
                     ");";
     public static final String DROP_TABLE =
-            "DROP TABLE " + Connection.TABLE + ";";
+            "DROP TABLE IF EXISTS " + Connection.TABLE + ";";
 
     public class Columns{
         public static final String SOLDIER_FROM_ID = "SOLDIER_FROM_ID";

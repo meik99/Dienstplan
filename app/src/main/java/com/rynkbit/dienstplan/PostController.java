@@ -4,7 +4,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.rynkbit.dienstplan.post.PostAdapter;
 import com.rynkbit.dienstplan.post.PostAddPostClickListener;
 
 /**

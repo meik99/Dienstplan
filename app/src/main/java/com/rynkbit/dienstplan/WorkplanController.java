@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.rynkbit.dienstplan.workplan.CreateWorkplanActivity;
-import com.rynkbit.dienstplan.workplan.WorkplanAdapter;
+import com.rynkbit.dienstplan.workplan.group.CreateGroupsActivity;
+
 
 /**
  * Created by michael on 11/12/17.
@@ -27,7 +27,7 @@ class WorkplanController implements Controller {
         fabWorkplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), CreateWorkplanActivity.class);
+                Intent intent = new Intent(view.getContext(), CreateGroupsActivity.class);
                 view.getContext().startActivity(intent);
             }
         });

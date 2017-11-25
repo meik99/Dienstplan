@@ -8,7 +8,6 @@ import java.util.List;
  */
 
 public class Soldier{
-    private int exertion;
     private Status status;
     private long id;
     private String name;
@@ -16,6 +15,7 @@ public class Soldier{
     private boolean ill;
     private boolean weak;
     private int workingHours;
+    private int exertion;
 
     private List<LikesPost> likesPostList;
     private List<SoldierConnection> soldierConnectionList;
@@ -43,6 +43,8 @@ public class Soldier{
         likesPostList = new LinkedList<>();
         soldierConnectionList = new LinkedList<>();
         this.id = -1;
+        this.positon = Positon.Gunner;
+        this.status = Status.Healthy;
     }
 
     public Status getStatus() {
@@ -77,18 +79,19 @@ public class Soldier{
         this.positon = positon;
     }
 
+    @Deprecated
     public boolean isIll() {
         return ill;
     }
-
+    @Deprecated
     public void setIll(boolean ill) {
         this.ill = ill;
     }
-
+    @Deprecated
     public boolean isWeak() {
         return weak;
     }
-
+    @Deprecated
     public void setWeak(boolean weak) {
         this.weak = weak;
     }
@@ -115,6 +118,14 @@ public class Soldier{
 
     public void setSoldierConnectionList(List<SoldierConnection> soldierConnectionList) {
         this.soldierConnectionList = soldierConnectionList;
+    }
+
+    public int getExertion() {
+        return exertion;
+    }
+
+    public void setExertion(int exertion) {
+        this.exertion = exertion;
     }
 
     public enum Positon {

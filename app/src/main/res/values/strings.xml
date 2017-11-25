@@ -11,4 +11,8 @@
     <string name="cancel">Abbrechen</string>
     <string name="von">Von</string>
     <string name="bis">Bis</string>
+    <string name="advance">Weiter</string>
+    <string name="title_activity_create_groups">CreateGroupsActivity</string>
+    <string name="groups">Gruppen</string>
+    <string name="title_activity_create_task">CreateTaskActivity</string>
 </resources>

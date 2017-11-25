@@ -15,10 +15,10 @@ public class SoldierGroup {
                     ");";
 
     public static final String DROP_TABLE =
-            "DROP TABLE " + TABLE + ";";
+            "DROP TABLE IF EXISTS " + TABLE + ";";
 
     public class Columns {
         public static final String SOLDIER_ID = "SOLDIER_ID";
-        public static final String GROUP = "GROUP";
+        public static final String GROUP = "GROUP_NUMBER";
     }
 }

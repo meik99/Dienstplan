@@ -19,10 +19,10 @@ public class SoldierFacade {
     }
 
     public void add(Soldier soldier){
-        SoldierRepository.getInstance(context).add(soldier);
+        SoldierRepository.getInstance(context).merge(soldier);
     }
 
-    public void update(Soldier soldier){
+    public void merge(Soldier soldier){
         SoldierRepository.getInstance(context).merge(soldier);
     }
 
