@@ -38,7 +38,7 @@ public class SoldierFacade {
         if(soldier < 0){
             return new Soldier();
         }else{
-            Soldier result = SoldierRepository.getInstance(context).get(soldier);
+            Soldier result = SoldierRepository.getInstance(context).getById(soldier);
 
             if(result == null){
                 return new Soldier();

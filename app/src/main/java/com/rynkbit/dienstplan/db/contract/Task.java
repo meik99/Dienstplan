@@ -10,7 +10,7 @@ public class Task {
             "CREATE TABLE " + TABLE + "(" +
                     Columns.ID + " INTEGER PRIMARY KEY," +
                     Columns.POST_ID + " INTEGER NOT NULL," +
-                    Columns.SHIFT_ID + " INTEGER NOT NULL," +
+                    Columns.SHIFT_ID + " INTEGER," +
                     Columns.TIME_FROM + " TEXT NOT NULL," +
                     Columns.TIME_TO+ " TEXT NOT NULL," +
                     Columns.GROUP + " INTEGER NOT NULL," +

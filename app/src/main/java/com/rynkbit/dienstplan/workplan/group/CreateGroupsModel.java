@@ -14,6 +14,8 @@ public class CreateGroupsModel {
     private Button buttonCancel;
     private Button buttonSave;
 
+
+
     public CreateGroupsModel() {
         this.shift = new Shift();
     }

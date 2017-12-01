@@ -19,7 +19,7 @@ import com.rynkbit.dienstplan.db.contract.Task;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Workplan.sqlite";
-    public static final int DB_VERSION = 11;
+    public static final int DB_VERSION = 12;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

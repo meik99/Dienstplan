@@ -15,7 +15,7 @@ import java.util.List;
  * Created by michael on 11/12/17.
  */
 
-public class SoldierRepository {
+public class SoldierRepository implements Repository<Soldier>{
     private static SoldierRepository instance;
 
     public static SoldierRepository getInstance(Context context) {
@@ -93,6 +93,11 @@ public class SoldierRepository {
         }
     }
 
+    @Override
+    public void remove(Soldier object) {
+        //Stub
+    }
+
     public List<Soldier> getAll() {
         List<Soldier> result = new LinkedList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
@@ -141,7 +146,7 @@ public class SoldierRepository {
         return result;
     }
 
-    public Soldier get(long soldierId) {
+    public Soldier getById(long soldierId) {
         Soldier result = new Soldier();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.query(

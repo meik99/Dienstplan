@@ -7,14 +7,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.rynkbit.dienstplan.R;
+import com.rynkbit.dienstplan.entities.Task;
 
 public class CreateTaskActivity extends AppCompatActivity {
     TaskModel model = new TaskModel();
 
     RecyclerView listTasks;
     ListTasksAdapter listTasksAdapter;
+
+    Button btnSave;
+    Button btnCancel;
+
+    CreateTaskController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +30,12 @@ public class CreateTaskActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listTasks = (RecyclerView) findViewById(R.id.listTasks);
+        controller = new CreateTaskController(this);
         listTasksAdapter = new ListTasksAdapter(this);
+
+        listTasks = (RecyclerView) findViewById(R.id.listTasks);
+        btnSave = (Button) findViewById(R.id.btnSave);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
 
         listTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listTasks.setAdapter(listTasksAdapter);
@@ -38,6 +49,9 @@ public class CreateTaskActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        btnSave.setOnClickListener(controller);
+        btnCancel.setOnClickListener(controller);
     }
 
     public void addTask() {
