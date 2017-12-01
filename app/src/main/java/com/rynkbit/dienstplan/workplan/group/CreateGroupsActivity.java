@@ -43,4 +43,11 @@ public class CreateGroupsActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
 }

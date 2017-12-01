@@ -15,6 +15,7 @@ public class Task {
     private int groupNumber;
 
     public Task() {
+        id = -1;
     }
 
     public long getId() {

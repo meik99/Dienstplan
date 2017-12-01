@@ -93,11 +93,6 @@ public class SoldierRepository implements Repository<Soldier>{
         }
     }
 
-    @Override
-    public void remove(Soldier object) {
-        //Stub
-    }
-
     public List<Soldier> getAll() {
         List<Soldier> result = new LinkedList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
