@@ -99,7 +99,6 @@ public class TaskDialog extends AlertDialog implements View.OnClickListener, Ada
                     calendar.get(Calendar.MINUTE),
                     true);
 
-
             timePickerDialog.show();
         }
     }

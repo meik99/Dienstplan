@@ -23,15 +23,10 @@ public class WorkplanDataHolder extends Application{
         return instance;
     }
 
-    private List<Dictionary<Integer, List<Task>>> taskGroups = new LinkedList<>();
+    private Dictionary<Integer, List<Task>> taskGroups = new Hashtable<>();
 
-    public List<Dictionary<Integer, List<Task>>> getTaskGroups() {
+    public Dictionary<Integer, List<Task>> getTaskGroups() {
         return taskGroups;
     }
 
-    public void addTaskGroup(int groupNumber, List<Task> tasks){
-        Dictionary<Integer, List<Task>> taskMap = new Hashtable<>();
-        taskMap.put(groupNumber, tasks);
-        taskGroups.add(taskMap);
-    }
 }

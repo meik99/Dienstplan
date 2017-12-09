@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rynkbit.dienstplan.db.facade.PostFacade;
+import com.rynkbit.dienstplan.entities.Task;
 import com.rynkbit.dienstplan.workplan.group.CreateGroupsActivity;
 
 import java.text.SimpleDateFormat;
@@ -30,8 +32,11 @@ class ListTasksAdapter extends RecyclerView.Adapter<ListTasksAdapter.SmallTaskVi
         }
     }
 
+    private final PostFacade postFacade;
+
     public ListTasksAdapter(CreateTaskActivity createTaskActivity) {
         this.activity = createTaskActivity;
+        postFacade = new PostFacade(activity);
     }
 
     @Override
@@ -44,15 +49,15 @@ class ListTasksAdapter extends RecyclerView.Adapter<ListTasksAdapter.SmallTaskVi
 
     @Override
     public void onBindViewHolder(SmallTaskViewHolder holder, int position) {
-        SmallTask smallTask = activity.model.getTasks().get(position);
+        Task task = activity.model.getTasks().get(position);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(simpleDateFormat.format(smallTask.getTimeFrom()));
+        stringBuilder.append(simpleDateFormat.format(task.getTimeFrom()));
         stringBuilder.append(" - ");
-        stringBuilder.append(simpleDateFormat.format(smallTask.getTimeTo()));
+        stringBuilder.append(simpleDateFormat.format(task.getTimeTo()));
 
-        holder.postName.setText(smallTask.getPost().getName());
+        holder.postName.setText(postFacade.getById(task.getPostId()).getName());
         holder.time.setText(
                 stringBuilder.toString()
         );
@@ -60,6 +65,9 @@ class ListTasksAdapter extends RecyclerView.Adapter<ListTasksAdapter.SmallTaskVi
 
     @Override
     public int getItemCount() {
-        return activity.model.getTasks().size();
+        if(activity.model.getTasks() != null){
+            return activity.model.getTasks().size();
+        }
+        return 0;
     }
 }

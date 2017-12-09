@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -30,9 +32,18 @@ public class CreateGroupsActivity extends AppCompatActivity {
         controller.getModel().setButtonSave(
                 (Button) findViewById(R.id.btnSave)
         );
+        controller.getModel().setGroupList(
+                (RecyclerView)findViewById(R.id.listGroups)
+        );
+        controller.getModel().setGroupListAdapter(
+                new GroupListAdapter(controller)
+        );
 
         controller.getModel().getButtonCancel().setOnClickListener(controller);
         controller.getModel().getButtonSave().setOnClickListener(controller);
+
+        controller.getModel().getGroupList().setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        controller.getModel().getGroupList().setAdapter(controller.getModel().getGroupListAdapter());
 
         FloatingActionButton fabAddGroup = (FloatingActionButton) findViewById(R.id.fabAddGroup);
         fabAddGroup.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +59,7 @@ public class CreateGroupsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-
+        controller.getModel().getGroupListAdapter()
+                .notifyDataSetChanged();
     }
 }

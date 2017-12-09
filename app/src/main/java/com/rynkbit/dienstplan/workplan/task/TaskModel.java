@@ -1,7 +1,7 @@
 package com.rynkbit.dienstplan.workplan.task;
 
-import com.rynkbit.dienstplan.db.contract.Task;
 import com.rynkbit.dienstplan.entities.Post;
+import com.rynkbit.dienstplan.entities.Task;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -15,7 +15,7 @@ public class TaskModel {
     private Date timeFrom;
     private Date timeTo;
     private Post post;
-    private List<SmallTask> tasks;
+    private List<Task> tasks;
 
     public TaskModel() {
         tasks = new LinkedList<>();
@@ -45,11 +45,14 @@ public class TaskModel {
         this.post = post;
     }
 
-    public List<SmallTask> getTasks() {
+    public List<Task> getTasks() {
+        if(tasks == null){
+            tasks = new LinkedList<>();
+        }
         return tasks;
     }
 
-    public void setTasks(List<SmallTask> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 }

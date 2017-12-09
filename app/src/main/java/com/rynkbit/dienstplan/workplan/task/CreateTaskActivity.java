@@ -55,8 +55,8 @@ public class CreateTaskActivity extends AppCompatActivity {
     }
 
     public void addTask() {
-        SmallTask smallTask = new SmallTask();
-        smallTask.setPost(model.getPost());
+        Task smallTask = new Task();
+        smallTask.setPostId(model.getPost().getId());
         smallTask.setTimeFrom(model.getTimeFrom());
         smallTask.setTimeTo(model.getTimeTo());
 

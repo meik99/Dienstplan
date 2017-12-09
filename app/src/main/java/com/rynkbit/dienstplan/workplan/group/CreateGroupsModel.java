@@ -1,5 +1,6 @@
 package com.rynkbit.dienstplan.workplan.group;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,7 +14,8 @@ public class CreateGroupsModel {
     private Shift shift;
     private Button buttonCancel;
     private Button buttonSave;
-
+    private RecyclerView groupList;
+    private GroupListAdapter groupListAdapter;
 
 
     public CreateGroupsModel() {
@@ -42,5 +44,21 @@ public class CreateGroupsModel {
 
     public Button getButtonSave() {
         return buttonSave;
+    }
+
+    public void setGroupList(RecyclerView groupList) {
+        this.groupList = groupList;
+    }
+
+    public RecyclerView getGroupList() {
+        return groupList;
+    }
+
+    public void setGroupListAdapter(GroupListAdapter groupListAdapter) {
+        this.groupListAdapter = groupListAdapter;
+    }
+
+    public GroupListAdapter getGroupListAdapter() {
+        return groupListAdapter;
     }
 }
