@@ -5,6 +5,7 @@ import android.content.Context;
 import com.rynkbit.dienstplan.db.repository.TaskRepository;
 import com.rynkbit.dienstplan.entities.Task;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -52,5 +53,29 @@ public class TaskFacade implements Facade<Task> {
         }
 
         return maxGroup+1;
+    }
+
+    public List<Task> getByShiftId(long shiftId) {
+        List<Task> result = new LinkedList<>();
+        List<Task> tasks = getAll();
+
+        for (Task task : tasks){
+            if(task.getShiftId() == shiftId)
+                result.add(task);
+        }
+
+        return result;
+    }
+
+    public List<Task> getByGroupNumber(int group){
+        List<Task> result = new LinkedList<>();
+        List<Task> tasks = getAll();
+
+        for (Task task : tasks){
+            if(task.getGroupNumber() == group)
+                result.add(task);
+        }
+
+        return result;
     }
 }

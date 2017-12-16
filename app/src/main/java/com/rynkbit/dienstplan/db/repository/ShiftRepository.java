@@ -1,5 +1,6 @@
 package com.rynkbit.dienstplan.db.repository;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -34,17 +35,55 @@ public class ShiftRepository implements Repository<Shift>{
 
     @Override
     public void merge(Shift object) {
+        Shift toUpdate = getById(object.getId());
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
 
+        contentValues.put(com.rynkbit.dienstplan.db.contract.Shift.Columns.NAME, object.getName());
+
+        if(toUpdate == null){
+            sqLiteDatabase.insert(
+                    com.rynkbit.dienstplan.db.contract.Shift.TABLE,
+                    null,
+                    contentValues
+            );
+        }else{
+            sqLiteDatabase.update(
+                    com.rynkbit.dienstplan.db.contract.Shift.TABLE,
+                    contentValues,
+                    com.rynkbit.dienstplan.db.contract.Shift.Columns.ID + " = ?",
+                    new String[]{String.valueOf(toUpdate.getId())}
+            );
+        }
     }
 
     @Override
     public void remove(long id) {
-
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        sqLiteDatabase.delete(
+                com.rynkbit.dienstplan.db.contract.Shift.TABLE,
+                com.rynkbit.dienstplan.db.contract.Shift.Columns.ID + " = ?",
+                new String[]{String.valueOf(id)}
+        );
     }
 
     @Override
     public Shift getById(long id) {
-        return null;
+        Shift result = null;
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query(
+                com.rynkbit.dienstplan.db.contract.Shift.TABLE,
+                null,
+                com.rynkbit.dienstplan.db.contract.Shift.Columns.ID + " = ?",
+                new String[]{String.valueOf(id)},
+                null, null, null
+        );
+
+        if(cursor.moveToFirst()){
+            result = shiftFromCursor(cursor);
+        }
+
+        return result;
     }
 
     @Override

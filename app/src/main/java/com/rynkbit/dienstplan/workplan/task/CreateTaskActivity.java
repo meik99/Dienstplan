@@ -59,6 +59,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         smallTask.setPostId(model.getPost().getId());
         smallTask.setTimeFrom(model.getTimeFrom());
         smallTask.setTimeTo(model.getTimeTo());
+        smallTask.setGroupNumber(model.getGroupNumber());
 
         model.getTasks().add(smallTask);
         listTasksAdapter.notifyDataSetChanged();

@@ -36,6 +36,8 @@ public class CreateTaskController implements View.OnClickListener {
             model.setTasks(WorkplanDataHolder.getInstance()
             .getTaskGroups().get(groupNumber));
         }
+
+        model.setGroupNumber(groupNumber);
     }
 
     @Override

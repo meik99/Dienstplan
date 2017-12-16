@@ -4,6 +4,8 @@ import android.view.View;
 
 import com.rynkbit.dienstplan.R;
 import com.rynkbit.dienstplan.Workplan;
+import com.rynkbit.dienstplan.db.facade.ShiftFacade;
+import com.rynkbit.dienstplan.db.facade.TaskFacade;
 import com.rynkbit.dienstplan.entities.Shift;
 import com.rynkbit.dienstplan.entities.Task;
 import com.rynkbit.dienstplan.workplan.WorkplanDataHolder;
@@ -36,6 +38,7 @@ class CreateGroupsController implements View.OnClickListener {
                 break;
             case R.id.btnSave:
                 saveTasks();
+                activity.finish();
                 break;
         }
     }
@@ -46,6 +49,13 @@ class CreateGroupsController implements View.OnClickListener {
                 .getTaskGroups()
                 .keys();
         Shift shift = new Shift();
+        ShiftFacade shiftFacade = new ShiftFacade(activity);
+        TaskFacade taskFacade = new TaskFacade(activity);
+
+        shiftFacade.merge(shift);
+        shift = shiftFacade.getAll().get(
+                shiftFacade.getAll().size()-1
+        );
 
         while(keys.hasMoreElements()){
             int currentKey = keys.nextElement();
@@ -54,6 +64,10 @@ class CreateGroupsController implements View.OnClickListener {
                     .getTaskGroups()
                     .get(currentKey);
 
+            for (Task task : currentTask){
+                task.setShiftId(shift.getId());
+                taskFacade.merge(task);
+            }
         }
     }
 }

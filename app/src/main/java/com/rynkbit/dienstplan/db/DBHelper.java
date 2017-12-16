@@ -48,10 +48,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'SPIELFELD', " + com.rynkbit.dienstplan.entities.Post.PostBurden.None.ordinal() + ");"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '10.11.2017');"
+                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '10-11-2017');"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '11.11.2017');"
+                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '11-11-2017');"
         );
 
     }

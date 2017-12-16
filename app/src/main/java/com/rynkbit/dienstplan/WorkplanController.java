@@ -16,13 +16,15 @@ import com.rynkbit.dienstplan.workplan.group.CreateGroupsActivity;
 class WorkplanController implements Controller {
     private final RecyclerView listWorkplan;
     private final FloatingActionButton fabWorkplan;
+    private final WorkplanAdapter workplanAdapter;
 
     public WorkplanController(Workplan workplan) {
         listWorkplan = (RecyclerView) workplan.findViewById(R.id.listWorkplan);
         fabWorkplan = (FloatingActionButton) workplan.findViewById(R.id.fabWorkplan);
+        workplanAdapter = new WorkplanAdapter(workplan);
 
-        listWorkplan.setLayoutManager(new LinearLayoutManager(workplan, LinearLayoutManager.HORIZONTAL, false));
-        listWorkplan.setAdapter(new WorkplanAdapter(workplan));
+        listWorkplan.setLayoutManager(new LinearLayoutManager(workplan, LinearLayoutManager.VERTICAL, false));
+        listWorkplan.setAdapter(workplanAdapter);
 
         fabWorkplan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,6 @@ class WorkplanController implements Controller {
 
     @Override
     public void update() {
-
+        workplanAdapter.notifyDataSetChanged();
     }
 }

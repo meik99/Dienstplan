@@ -16,6 +16,7 @@ public class TaskModel {
     private Date timeTo;
     private Post post;
     private List<Task> tasks;
+    private int groupNumber;
 
     public TaskModel() {
         tasks = new LinkedList<>();
@@ -54,5 +55,13 @@ public class TaskModel {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void setGroupNumber(int groupNumber) {
+        this.groupNumber = groupNumber;
+    }
+
+    public int getGroupNumber() {
+        return groupNumber;
     }
 }

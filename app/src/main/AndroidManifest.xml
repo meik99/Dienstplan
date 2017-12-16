@@ -29,6 +29,10 @@
         <activity
             android:name=".workplan.task.CreateTaskActivity"
             android:label="@string/title_activity_create_task"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".workplan.FinishedWorkplanActivity"
+            android:label="@string/title_activity_finished_workplan"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
