@@ -5,6 +5,7 @@ import android.app.Application;
 import com.rynkbit.dienstplan.entities.Shift;
 import com.rynkbit.dienstplan.entities.Soldier;
 
+import java.util.Dictionary;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class FinishedWorkplanDataHolder extends Application {
     private static FinishedWorkplanDataHolder instance;
-    private List<Soldier> soldierPool;
+    private Dictionary<Integer, List<Soldier>> soldierPool;
 
     public static FinishedWorkplanDataHolder getInstance(){
         if(instance == null){
@@ -45,11 +46,11 @@ public class FinishedWorkplanDataHolder extends Application {
         this.groupNumber = groupNumber;
     }
 
-    public void setSoldierPool(List<Soldier> soldierPool) {
+    public void setSoldierPool(Dictionary<Integer, List<Soldier>> soldierPool) {
         this.soldierPool = soldierPool;
     }
 
-    public List<Soldier> getSoldierPool() {
+    public Dictionary<Integer, List<Soldier>> getSoldierPool() {
         return soldierPool;
     }
 }

@@ -83,7 +83,7 @@ public class FinishedWorkplanFragment extends Fragment{
         listTasks.setLayoutManager(new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false));
         listSoldier.setLayoutManager(new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false));
         listTasks.setAdapter(new TaskListAdapter(tasks));
-
+        listSoldier.setAdapter(new SoldierListAdapter(groupNumber));
 
         return fragementView;
     }

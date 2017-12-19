@@ -8,19 +8,6 @@
     tools:context="com.rynkbit.dienstplan.workplan.group.CreateGroupsActivity"
     tools:showIn="@layout/activity_create_groups">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAddGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_anchorGravity="right|center"
-        app:layout_constraintBottom_toTopOf="@+id/btnSave"
-        app:layout_constraintEnd_toEndOf="@+id/listGroups"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listGroups"
         android:layout_width="0dp"
@@ -78,4 +65,17 @@
         android:text="@string/groups"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_anchorGravity="right|center"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintEnd_toEndOf="@+id/listGroups"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 </android.support.constraint.ConstraintLayout>

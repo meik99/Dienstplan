@@ -12,10 +12,10 @@
     <string name="von">Von</string>
     <string name="bis">Bis</string>
     <string name="advance">Weiter</string>
-    <string name="title_activity_create_groups">CreateGroupsActivity</string>
+    <string name="title_activity_create_groups">Create Groups</string>
     <string name="groups">Gruppen</string>
-    <string name="title_activity_create_task">CreateTaskActivity</string>
-    <string name="title_activity_finished_workplan">FinishedWorkplanActivity</string>
+    <string name="title_activity_create_task">Create Tasks</string>
+    <string name="title_activity_finished_workplan">Workplan</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>

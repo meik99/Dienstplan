@@ -19,7 +19,7 @@ import com.rynkbit.dienstplan.db.contract.Task;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Workplan.sqlite";
-    public static final int DB_VERSION = 12;
+    public static final int DB_VERSION = 15;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -36,23 +36,78 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SoldierGroup.CREATE_TABLE);
 
         sqLiteDatabase.execSQL(
-                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'SOLDIER 1', 0, 0, 0);"
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Los', " +
+                        com.rynkbit.dienstplan.entities.Soldier.Positon.Driver.ordinal() +
+                        ", 0, 0);"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'SOLDIER 2', 0, 0, 0);"
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Maier', " +
+                        com.rynkbit.dienstplan.entities.Soldier.Positon.Commander.ordinal() +
+                        ", 0, 0);"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 2', " + com.rynkbit.dienstplan.entities.Post.PostBurden.Medium.ordinal() + ");"
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Pissenberger', 0, 0, 0);"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'SPIELFELD', " + com.rynkbit.dienstplan.entities.Post.PostBurden.None.ordinal() + ");"
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Pöchtrager', 0, 0, 0);"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '10-11-2017');"
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Rynkiewicz', 0, 0, 0);"
         );
         sqLiteDatabase.execSQL(
-                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '11-11-2017');"
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Vicovan', 0, 0, 0);"
         );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO "  + Soldier.TABLE + " VALUES (NULL, 'Zeppezauer', " +
+                        com.rynkbit.dienstplan.entities.Soldier.Positon.ViceCommander.ordinal() +
+                        ", 0, 0);"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 2', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Light.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 3', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Light.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 4', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Light.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 5', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Medium.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 6', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Medium.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'COP 11', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Hard.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'Funny Hill', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.Hard.ordinal() +
+                        ");"
+        );
+        sqLiteDatabase.execSQL(
+                "INSERT INTO " + Post.TABLE + " VALUES (NULL, 'SPIELFELD', " +
+                        com.rynkbit.dienstplan.entities.Post.PostBurden.None.ordinal() +
+                        ");"
+        );
+//        sqLiteDatabase.execSQL(
+//                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '10-11-2017');"
+//        );
+//        sqLiteDatabase.execSQL(
+//                "INSERT INTO " + Shift.TABLE + " VALUES (NULL, '11-11-2017');"
+//        );
 
     }
 

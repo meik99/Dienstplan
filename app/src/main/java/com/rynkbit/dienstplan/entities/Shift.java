@@ -1,5 +1,6 @@
 package com.rynkbit.dienstplan.entities;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -13,7 +14,8 @@ public class Shift {
     private String name;
 
     public Shift() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d-M-YYYY", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyLocalizedPattern("d-M-yyyy");
 
         this.id = -1;
         this.name = simpleDateFormat.format(new Date());

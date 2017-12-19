@@ -15,10 +15,17 @@ import android.widget.TabHost;
 
 import com.rynkbit.dienstplan.db.DBHelper;
 import com.rynkbit.dienstplan.db.contract.Task;
+import com.rynkbit.dienstplan.db.facade.SoldierFacade;
+import com.rynkbit.dienstplan.entities.Soldier;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Created by michael on 12/14/17.
@@ -27,13 +34,19 @@ import java.util.Locale;
 public class FinishedWorkplanSections extends FragmentPagerAdapter{
     DBHelper dbHelper;
     List<Integer> groups;
+    Dictionary<Integer, List<Soldier>> soldierGroup;
     Context context;
 
     public FinishedWorkplanSections(FinishedWorkplanActivity activity, FragmentManager fm) {
         super(fm);
         SQLiteDatabase database;
         Cursor cursor;
+        SoldierFacade soldierFacade = new SoldierFacade(activity);
+        List<Soldier> soldiers = soldierFacade.getAll();
+        Soldier[] soldierArray = new Soldier[soldiers.size()];
+        final Random random = new Random();
 
+        soldierGroup = new Hashtable<>();
         dbHelper = new DBHelper(activity);
         groups = new LinkedList<>();
         this.context = activity;
@@ -50,10 +63,36 @@ public class FinishedWorkplanSections extends FragmentPagerAdapter{
 
         if(cursor.moveToFirst()){
             do {
+                int group = cursor.getInt(0);
                 groups.add(
-                        cursor.getInt(0)
+                        group
                 );
+                List<Soldier> groupSoldiers = new LinkedList<>();
+
+                if(soldiers.size() >= 2){
+                    Arrays.sort(soldierArray, new Comparator<Soldier>() {
+                        @Override
+                        public int compare(Soldier o1, Soldier o2) {
+                            return random.nextInt(3) - 1;
+                        }
+                    });
+                    groupSoldiers.add(
+                            soldiers.remove(0)
+                    );
+                    groupSoldiers.add(
+                            soldiers.remove(0)
+                    );
+
+                    soldierArray = new Soldier[soldiers.size()];
+                    soldierArray = soldiers.toArray(soldierArray);
+                }else if(soldiers.size() == 1){
+                    groupSoldiers.add(soldiers.remove(0));
+                }
+
+                soldierGroup.put(group, groupSoldiers);
             }while(cursor.moveToNext());
+
+            FinishedWorkplanDataHolder.getInstance().setSoldierPool(soldierGroup);
         }
     }
 
