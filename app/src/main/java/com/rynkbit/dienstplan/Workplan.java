@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.rynkbit.dienstplan.db.DBHelper;
+import com.rynkbit.dienstplan.workplan.WorkplanDataHolder;
 
 public class Workplan extends AppCompatActivity {
 
@@ -71,5 +72,6 @@ public class Workplan extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mController.update();
+        WorkplanDataHolder.getInstance().resetTaskGroups();
     }
 }

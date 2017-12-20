@@ -109,9 +109,11 @@ public class TaskDialog extends AlertDialog implements View.OnClickListener, Ada
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String text = String.format(Locale.ENGLISH, "%02d:%02d", hourOfDay, minute);
                 Date date = new Date(0);
+                int offset = Calendar.getInstance().getTimeZone().getOffset(date.getTime());
 
                 date.setTime(hourOfDay * 60 * 60 * 1000);
                 date.setTime(date.getTime() + minute * 60 * 1000);
+                date.setTime(date.getTime() + offset);
 
                 if(id == R.id.txtTimeFrom){
                     TaskDialog.this.timeFrom.setText(text);

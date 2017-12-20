@@ -29,4 +29,7 @@ public class WorkplanDataHolder extends Application{
         return taskGroups;
     }
 
+    public void resetTaskGroups() {
+        taskGroups = new Hashtable<>();
+    }
 }

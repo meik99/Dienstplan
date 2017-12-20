@@ -35,6 +35,8 @@ class WorkplanController implements Controller {
         });
     }
 
+
+
     @Override
     public void update() {
         workplanAdapter.notifyDataSetChanged();
